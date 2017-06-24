@@ -2,8 +2,10 @@ within EMOTH.Drivers;
 model DrivingCycle "Definition of the driving cycle v(t)"
   extends EMOTH.Icons.DrivingCycle;
   import EMOTH.Drivers.Components.CycleType;
+  import EMOTH.Drivers.Components.SpeedConversion;
+  constant String DirDrivingCycles="EMOTH/Resources/DrivingCycles/";
   parameter EMOTH.Drivers.Components.CycleType cycle "Type of driving cycle";
-  parameter Boolean convert_from_kmh=true "Convert speed from km/h to m/s?"
+  parameter EMOTH.Drivers.Components.SpeedConversion speedConversion=EMOTH.Drivers.Components.SpeedConversion.kmh "Speed conversion"
     annotation(Dialog(enable=cycle==CycleType.Table));
   parameter Integer n=0 "Terminate after n  cycles (n<= means no termination)";
   parameter Boolean tableOnFile=false
@@ -27,28 +29,29 @@ model DrivingCycle "Definition of the driving cycle v(t)"
   final parameter Modelica.SIunits.Time t_min=combiTable.u_min "Mimimum time of table";
   final parameter Modelica.SIunits.Time t_max=combiTable.u_max "Maximum time of table";
 protected
-  constant Real udc[:,2]=
-  [00,  0;  11,  0;  15, 15;  23, 15;  28,  0;  49,  0;  55, 15;  61, 32;  85, 32;  96,  0;
-  117,  0; 123, 15; 134, 35; 143, 50; 155, 50; 163, 35; 178, 35; 188,  0; 195,  0];
-  constant Real eudc[:,2]=
-  [00,  0;  20,  0;  26, 15;  37, 35;  47, 50;  61, 70; 111, 70; 119, 50; 188, 50; 201, 70;
-  251, 70; 286,100; 316,100; 336,120; 346,120; 362, 80; 370, 50; 380,  0; 400, 0];
-  constant Real nedc[:,2]=
-  [000,  0;  11,  0;  15, 15;  23, 15;  28,  0;  49,  0;  55, 15;  61, 32;  85, 32;  96,  0;
-   117,  0; 123, 15; 134, 35; 143, 50; 155, 50; 163, 35; 178, 35; 188,  0; 195,  0;
-            206,  0; 210, 15; 218, 15; 223,  0; 244,  0; 250, 15; 256, 32; 280, 32; 291,  0;
-   312,  0; 318, 15; 329, 35; 338, 50; 350, 50; 358, 35; 373, 35; 383,  0; 390,  0;
-            401,  0; 405, 15; 413, 15; 418,  0; 439,  0; 445, 15; 451, 32; 475, 32; 486,  0;
-   507,  0; 513, 15; 524, 35; 533, 50; 545, 50; 553, 35; 568, 35; 578,  0; 585,  0;
-            596,  0; 600, 15; 608, 15; 613,  0; 634,  0; 640, 15; 646, 32; 670, 32; 681,  0;
-   702,  0; 708, 15; 719, 35; 728, 50; 740, 50; 748, 35; 763, 35; 773,  0; 780,  0;
-            800,  0; 806, 15; 817, 35; 827, 50; 841, 70; 891, 70; 899, 50; 968, 50; 981, 70;
-  1031, 70;1066,100;1096,100;1116,120;1126,120;1142, 80;1150, 50;1160,  0;1180, 0];
-  final parameter Real dc[:,2]=if cycle==CycleType.UDC then udc elseif cycle==CycleType.EUDC then eudc
-    elseif cycle==CycleType.NEDC then nedc else table;
-  final parameter Real kmh2ms=if convert_from_kmh or cycle==CycleType.UDC or cycle==CycleType.EUDC or cycle==CycleType.NEDC then 1/3.6 else 1;
+  final parameter Real conversionFactor=
+    if (cycle==CycleType.Table and speedConversion==SpeedConversion.kmh)
+    or  cycle==CycleType.UDC or cycle==CycleType.EUDC or cycle==CycleType.NEDC or cycle==CycleType.WLTC then 1/3.6
+    elseif (cycle==CycleType.Table and speedConversion==SpeedConversion.mph) or cycle==CycleType.FTP75 then 1.609344/3.6
+    else 1;
+  final parameter Boolean internalTableOnFile=
+    if cycle==CycleType.Table then tableOnFile else true;
+  final parameter String internalTableName=
+    if cycle==CycleType.Table then tableName
+    elseif cycle==CycleType.UDC then "UDC"
+    elseif cycle==CycleType.EUDC then "EUDC"
+    elseif cycle==CycleType.NEDC then "NEDC"
+    elseif cycle==CycleType.WLTC then "WLTC_class3"
+    elseif cycle==CycleType.FTP75 then "FTP75"
+    else "NoName";
+  final parameter String internalFileName=
+    if cycle==CycleType.Table then fileName
+    elseif cycle==CycleType.UDC or cycle==CycleType.EUDC or cycle==CycleType.NEDC then DirDrivingCycles+"NEDC.txt"
+    elseif cycle==CycleType.WLTC then DirDrivingCycles+"WLTC.txt"
+    elseif cycle==CycleType.FTP75 then DirDrivingCycles+"FTP75.txt"
+    else "NoName";
 public
-  Modelica.Blocks.Math.Gain from_kmh(final k=kmh2ms)
+  Modelica.Blocks.Math.Gain from_kmh(final k=conversionFactor)
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
   Interfaces.DriverInterface driverInterface annotation (Placement(
         transformation(
@@ -56,23 +59,20 @@ public
         rotation=270,
         origin={100,3.55271e-015})));
   Blocks.CombiTable1Dse combiTable(
-    final tableOnFile=tableOnFile,
-    final table=dc,
-    final tableName=tableName,
-    final fileName=fileName,
-    final extrapolation=extrapolation)
+    final extrapolation=extrapolation, tableOnFile=internalTableOnFile,
+    final table=table,
+    final tableName=internalTableName,
+    final fileName=internalFileName)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Blocks.Sources.Clock clock(offset=0, startTime=0)
     annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
   Blocks.CombiTable1Dse combiTablePreview(
-    final tableOnFile=tableOnFile,
-    final table=dc,
-    final tableName=tableName,
-    final fileName=fileName,
-    final extrapolation=extrapolation)
+    final extrapolation=extrapolation, final tableOnFile=internalTableOnFile,
+    final table=table,
+    final tableName=internalTableName,
+    final fileName=internalFileName)
     annotation (Placement(transformation(extent={{-10,30},{10,50}})));
-public
-  Modelica.Blocks.Math.Gain from_kmhPreview(final k=kmh2ms)
+  Modelica.Blocks.Math.Gain from_kmhPreview(final k=conversionFactor)
     annotation (Placement(transformation(extent={{40,30},{60,50}})));
   Modelica.Blocks.Math.Add add
     annotation (Placement(transformation(extent={{-40,30},{-20,50}})));

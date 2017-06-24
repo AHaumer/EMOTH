@@ -18,7 +18,9 @@ model IdealPowerConverter
     final k1=+1,
     final k3=-1)
     annotation (Placement(transformation(extent={{-10,-50},{10,-70}})));
-  Modelica.Blocks.Continuous.Integrator integrator(k=1e6, initType=Modelica.Blocks.Types.Init.SteadyState)
+  Modelica.Blocks.Continuous.Integrator integrator(k=1e6,
+    initType=Modelica.Blocks.Types.Init.InitialOutput,
+    y_start=0)
     annotation (Placement(transformation(extent={{20,-70},{40,-50}})));
   Modelica.Blocks.Interfaces.RealInput Ploss if useLosses annotation (Placement(
         transformation(

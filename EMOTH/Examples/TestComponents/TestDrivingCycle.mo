@@ -4,8 +4,8 @@ model TestDrivingCycle "Test driving cycle"
   Drivers.DrivingCycle drivingCycle(
     extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint,
     table=[0,0; 10,0; 20,35; 25,50; 75,50; 80,35; 90,0; 100,0],
-    cycle=EMOTH.Drivers.Components.CycleType.NEDC,
-    n=1)
+    n=1,
+    cycle=EMOTH.Drivers.Components.CycleType.Table)
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
   Modelica.Blocks.Continuous.Integrator integrator(
     k=1,
