@@ -3,7 +3,6 @@ model DrivingCycle "Definition of the driving cycle v(t)"
   extends EMOTH.Icons.DrivingCycle;
   import EMOTH.Drivers.Components.CycleType;
   import EMOTH.Drivers.Components.SpeedConversion;
-  constant String DirDrivingCycles="EMOTH/Resources/DrivingCycles/";
   parameter EMOTH.Drivers.Components.CycleType cycle "Type of driving cycle";
   parameter EMOTH.Drivers.Components.SpeedConversion speedConversion=EMOTH.Drivers.Components.SpeedConversion.kmh "Speed conversion"
     annotation(Dialog(enable=cycle==CycleType.Table));
@@ -44,11 +43,17 @@ protected
     elseif cycle==CycleType.WLTC then "WLTC_class3"
     elseif cycle==CycleType.FTP75 then "FTP75"
     else "NoName";
+  import Modelica.Utilities.Files.loadResource;
+  constant String DirDrivingCycles="modelica://EMOTH/Resources/DrivingCycles/";
+  constant String fileNames[:]={
+    loadResource(DirDrivingCycles+"NEDC.txt"),
+    loadResource(DirDrivingCycles+"WLTC.txt"),
+    loadResource(DirDrivingCycles+"FTP75.txt")};
   final parameter String internalFileName=
     if cycle==CycleType.Table then fileName
-    elseif cycle==CycleType.UDC or cycle==CycleType.EUDC or cycle==CycleType.NEDC then DirDrivingCycles+"NEDC.txt"
-    elseif cycle==CycleType.WLTC then DirDrivingCycles+"WLTC.txt"
-    elseif cycle==CycleType.FTP75 then DirDrivingCycles+"FTP75.txt"
+    elseif cycle==CycleType.UDC or cycle==CycleType.EUDC or cycle==CycleType.NEDC then fileNames[1]
+    elseif cycle==CycleType.WLTC then fileNames[2]
+    elseif cycle==CycleType.FTP75 then fileNames[3]
     else "NoName";
 public
   Modelica.Blocks.Math.Gain from_kmh(final k=conversionFactor)
