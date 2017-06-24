@@ -12,8 +12,7 @@ model SimpleBattery "Simple battery model"
     annotation(Dialog(group="Initialization"));
   output Modelica.SIunits.Energy EDC=integratorEnergy.y "DC energy consumption";
   output Real SoC=integratorCharge.y/from_Ah(batteryData.QNominal) "State of charge";
-  Modelica.Electrical.Analog.Sources.ConstantVoltage constantVoltage(final V=
-        batteryData.VDC)
+  Modelica.Electrical.Analog.Sources.SignalVoltage   constantVoltage
     annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
@@ -54,6 +53,14 @@ protected
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-100,0})));
+public
+  Components.SoCdependentVoltage batteryVoltage(
+    VDC=batteryData.VDC,
+    VDCmin=batteryData.VDCmin,
+    SoCmin=batteryData.SoCmin) annotation (Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=90,
+        origin={-30,50})));
 equation
   assert(SoC<=1.001, "Battery overloaded!");
   assert(SoC>=batteryData.SoCmin, "Battery exhausted!");
@@ -65,8 +72,8 @@ equation
           {-100.05,0},{-100.05,0.05}}, color={0,0,127}));
   connect(heatFlowSensor.Q_flow, batteryBus.Losses) annotation (Line(points={{-20,-60},
           {-20,-50},{-80,-50},{-80,0.05},{-100.05,0.05}},      color={0,0,127}));
-  connect(integratorCharge.y, gain.u) annotation (Line(points={{-21,0},{-30,0},{
-          -30,-30},{-48,-30}}, color={0,0,127}));
+  connect(integratorCharge.y, gain.u) annotation (Line(points={{-21,0},{-30,0},
+          {-30,-30},{-48,-30}},color={0,0,127}));
   connect(gain.y, batteryBus.SoC) annotation (Line(points={{-71,-30},{-80,-30},{
           -80,0.05},{-100.05,0.05}}, color={0,0,127}));
   connect(pin_n, constantVoltage.n) annotation (Line(points={{-60,100},{-60,100},
@@ -82,20 +89,24 @@ equation
   connect(resistor.heatPort, heatFlowSensor.port_a) annotation (Line(points={{10,
           70},{10,70},{10,-70},{10,-70},{-10,-70}}, color={191,0,0}));
   connect(electricalMulitSensorDC.power, integratorEnergy.u) annotation (Line(
-        points={{34,69},{34,69},{34,40},{-40,40},{-40,0},{-48,0}}, color={0,0,127}));
+        points={{34,69},{34,20},{-40,20},{-40,0},{-48,0}},         color={0,0,127}));
   connect(electricalMulitSensorDC.power, batteryBus.PDC) annotation (Line(
-        points={{34,69},{34,69},{34,40},{34,40},{-100.05,40},{-100.05,0.05}},
+        points={{34,69},{34,20},{-100.05,20},{-100.05,0.05}},
         color={0,0,127}));
   connect(electricalMulitSensorDC.current, integratorCharge.u)
     annotation (Line(points={{40,69},{40,69},{40,0},{2,0}}, color={0,0,127}));
   connect(electricalMulitSensorDC.current, batteryBus.iDC) annotation (Line(
-        points={{40,69},{40,69},{40,40},{-100.05,40},{-100.05,0.05}}, color={0,0,
+        points={{40,69},{40,20},{-100.05,20},{-100.05,0.05}},         color={0,0,
           127}));
   connect(electricalMulitSensorDC.voltage, batteryBus.vDC) annotation (Line(
-        points={{46,69},{46,69},{46,40},{-100.05,40},{-100.05,0.05}}, color={0,0,
+        points={{46,69},{46,20},{-100.05,20},{-100.05,0.05}},         color={0,0,
           127}));
   connect(internalHeatPort, heatFlowSensor.port_b)
     annotation (Line(points={{-40,-70},{-35,-70},{-30,-70}}, color={191,0,0}));
+  connect(batteryVoltage.y, constantVoltage.v)
+    annotation (Line(points={{-30,61},{-30,73}}, color={0,0,127}));
+  connect(gain.y, batteryVoltage.u) annotation (Line(points={{-71,-30},{-80,-30},
+          {-80,30},{-30,30},{-30,38}}, color={0,0,127}));
   annotation (Documentation(info="<html>
 <p>
 Simple model of a battery with constant no-load voltage and inner resistance. 

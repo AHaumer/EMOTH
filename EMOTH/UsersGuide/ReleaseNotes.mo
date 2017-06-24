@@ -13,5 +13,9 @@ class ReleaseNotes "Release notes"
 <li>Built-in driving cycles defined in txt-files in EMOTH.Resources.DrivingCycles</li>
 <li>Added driving cycles WLTC-class3 and FTP-75</li>
 </ul>
+<h5>Version 1.2.0, 2017-06-25</h5>
+<ul>
+<li>Added (linear) battery no-load voltage dependency on SoC</li>
+</ul>
 </html>"));
 end ReleaseNotes;

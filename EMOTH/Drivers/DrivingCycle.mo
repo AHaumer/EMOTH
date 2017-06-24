@@ -104,10 +104,12 @@ equation
 Defines the driving cycle v(t) as one of the following choices:
 </p>
 <ul>
-<li>UDC urban driving cycle [0..195] s with vMax=50 km/h</li>
-<li>EUDC extra urban driving cycle [0..400] s vMax=120 km/h</li>
-<li>NEDC new European driving cycle [0..1180] s = 4 x UDC + 1 x EUDC</li>
 <li>user defined by a table</li>
+<li>UDC urban driving cycle [0..195] s with vMax=50 km/h</li>
+<li>EUDC extra urban driving cycle [0..400] s with vMax=120 km/h</li>
+<li>NEDC new European driving cycle [0..1180] s = 4 x UDC + 1 x EUDC</li>
+<li>WLTC Worldwide Harmonized Light-Duty Vehicles Test Procedure - Class 3 [0..1800] s with vMax=131.3 km/h</li>
+<li>FTP75 EPA Federal Test Procedure - 75 [0..1874] s with vMax=56.7 mph=91.25 km/h</li>
 </ul>
 <p>
 The first column specifies in a strict monotonically rising order the time (measured in s), the second column the speed (either in m/s or km/s). 

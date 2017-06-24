@@ -3,6 +3,7 @@ record BatteryTestData "Test battery parameters"
   extends BatteryData(
     DataName="TestBattery",
     VDC=400,
+    VDCmin=360,
     Ri=0.05,
     QNominal=100);
   annotation(defaultComponentPrefixes="parameter", Documentation(info="<html>
