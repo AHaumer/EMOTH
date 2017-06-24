@@ -43,12 +43,10 @@ protected
     elseif cycle==CycleType.WLTC then "WLTC_class3"
     elseif cycle==CycleType.FTP75 then "FTP75"
     else "NoName";
-  import Modelica.Utilities.Files.loadResource;
-  constant String DirDrivingCycles="modelica://EMOTH/Resources/DrivingCycles/";
   constant String fileNames[:]={
-    loadResource(DirDrivingCycles+"NEDC.txt"),
-    loadResource(DirDrivingCycles+"WLTC.txt"),
-    loadResource(DirDrivingCycles+"FTP75.txt")};
+    Modelica.Utilities.Files.loadResource("modelica://EMOTH/Resources/DrivingCycles/NEDC.txt"),
+    Modelica.Utilities.Files.loadResource("modelica://EMOTH/Resources/DrivingCycles/WLTC.txt"),
+    Modelica.Utilities.Files.loadResource("modelica://EMOTH/Resources/DrivingCycles/FTP75.txt")};
   final parameter String internalFileName=
     if cycle==CycleType.Table then fileName
     elseif cycle==CycleType.UDC or cycle==CycleType.EUDC or cycle==CycleType.NEDC then fileNames[1]
