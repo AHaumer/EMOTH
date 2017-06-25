@@ -5,7 +5,8 @@ model TestAccesories "Test accessories"
   EnergyStorages.SimpleBattery battery(batteryData(
       QNominal=100,
       VDC=100,
-      Ri=0.1))
+      Ri=0.1,
+      VDCmin=100))
     annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
   Accessories.ElectricalAccessories electricalAccessories(P=10000,
       useConstantPower=true)
