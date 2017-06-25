@@ -17,5 +17,9 @@ class ReleaseNotes "Release notes"
 <ul>
 <li>Added (linear) battery no-load voltage dependency on SoC</li>
 </ul>
+<h5>Version 1.3.0, 2017-06-25</h5>
+<ul>
+<li>Added CADC Common Artemis Driving Cycles (Urban, Rural Road, Motor Highway)</li>
+</ul>
 </html>"));
 end ReleaseNotes;

@@ -1,5 +1,6 @@
 #1
-#  t   v[miles/h]
+# EPA Federal Test Procedure - 75
+#  t   v[mph]
 double FTP75(1496, 2)
    0   0
   20   0

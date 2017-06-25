@@ -23,6 +23,9 @@ protected
         extent={{-6,-6},{6,6}},
         rotation=90,
         origin={0,0})));
+public
+  Modelica.Blocks.Continuous.Der acceleration
+    annotation (Placement(transformation(extent={{20,-40},{40,-20}})));
 equation
   connect(drivingCycle.driverInterface, driverInterface) annotation (Line(
       points={{-10,4.44089e-016},{-4,4.44089e-016},{-4,0},{0,0}},
@@ -34,6 +37,8 @@ equation
         points={{18,30},{10,30},{10,0.03},{-0.03,0.03}}, color={0,0,127}));
   connect(tPreview.y, driverInterface.tPreview) annotation (Line(points={{-9,30},
           {-0.03,30},{-0.03,0.03}}, color={0,0,127}));
+  connect(acceleration.u, driverInterface.vReference) annotation (Line(points={
+          {18,-30},{10,-30},{10,0.03},{-0.03,0.03}}, color={0,0,127}));
   annotation (experiment(
       StopTime=86400,
       Interval=0.1,

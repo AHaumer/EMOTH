@@ -30,7 +30,9 @@ model DrivingCycle "Definition of the driving cycle v(t)"
 protected
   final parameter Real conversionFactor=
     if (cycle==CycleType.Table and speedConversion==SpeedConversion.kmh)
-    or  cycle==CycleType.UDC or cycle==CycleType.EUDC or cycle==CycleType.NEDC or cycle==CycleType.WLTC then 1/3.6
+    or cycle==CycleType.UDC or cycle==CycleType.EUDC or cycle==CycleType.NEDC or cycle==CycleType.WLTC
+    or cycle==CycleType.CADCU or cycle==CycleType.CADCR or cycle==CycleType.CADCM130 or cycle==CycleType.CADCM150
+    or cycle==CycleType.CADC130 or cycle==CycleType.CADC150 then 1/3.6
     elseif (cycle==CycleType.Table and speedConversion==SpeedConversion.mph) or cycle==CycleType.FTP75 then 1.609344/3.6
     else 1;
   final parameter Boolean internalTableOnFile=
@@ -42,16 +44,26 @@ protected
     elseif cycle==CycleType.NEDC then "NEDC"
     elseif cycle==CycleType.WLTC then "WLTC_class3"
     elseif cycle==CycleType.FTP75 then "FTP75"
+    elseif cycle==CycleType.CADCU then "CADCU"
+    elseif cycle==CycleType.CADCR then "CADCR"
+    elseif cycle==CycleType.CADCM130 then "CADCM130"
+    elseif cycle==CycleType.CADCM150 then "CADCM150"
+    elseif cycle==CycleType.CADC130 then "CADC130"
+    elseif cycle==CycleType.CADC150 then "CADC150"
     else "NoName";
   constant String fileNames[:]={
     Modelica.Utilities.Files.loadResource("modelica://EMOTH/Resources/DrivingCycles/NEDC.txt"),
     Modelica.Utilities.Files.loadResource("modelica://EMOTH/Resources/DrivingCycles/WLTC.txt"),
-    Modelica.Utilities.Files.loadResource("modelica://EMOTH/Resources/DrivingCycles/FTP75.txt")};
+    Modelica.Utilities.Files.loadResource("modelica://EMOTH/Resources/DrivingCycles/FTP75.txt"),
+    Modelica.Utilities.Files.loadResource("modelica://EMOTH/Resources/DrivingCycles/CADC.txt")};
   final parameter String internalFileName=
     if cycle==CycleType.Table then fileName
     elseif cycle==CycleType.UDC or cycle==CycleType.EUDC or cycle==CycleType.NEDC then fileNames[1]
     elseif cycle==CycleType.WLTC then fileNames[2]
     elseif cycle==CycleType.FTP75 then fileNames[3]
+    elseif cycle==CycleType.CADCU or cycle==CycleType.CADCR
+        or cycle==CycleType.CADCM130 or cycle==CycleType.CADCM150
+        or cycle==CycleType.CADC130 or cycle==CycleType.CADC150 then fileNames[4]
     else "NoName";
 public
   Modelica.Blocks.Math.Gain from_kmh(final k=conversionFactor)
@@ -110,6 +122,10 @@ Defines the driving cycle v(t) as one of the following choices:
 <li>NEDC new European driving cycle [0..1180] s = 4 x UDC + 1 x EUDC</li>
 <li>WLTC Worldwide Harmonized Light-Duty Vehicles Test Procedure - Class 3 [0..1800] s with vMax=131.3 km/h</li>
 <li>FTP75 EPA Federal Test Procedure - 75 [0..1874] s with vMax=56.7 mph=91.25 km/h</li>
+<li>CADCU Common Artemis Driving Cycle - Urban</li>
+<li>CADCR Common Artemis Driving Cycle - Rural Road</li>
+<li>CADCM130 Common Artemis Driving Cycle - Motor Highway with vMax=130 km/h</li>
+<li>CADCM150 Common Artemis Driving Cycle - Motor Highway with vMax=150 km/h</li>
 </ul>
 <p>
 The first column specifies in a strict monotonically rising order the time (measured in s), the second column the speed (either in m/s or km/s). 

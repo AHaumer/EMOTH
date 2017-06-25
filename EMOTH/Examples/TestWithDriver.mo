@@ -29,9 +29,9 @@ model TestWithDriver "Test with driver over a driving cycle"
   Drivers.Driver driver annotation (
     Placement(transformation(extent = {{-40, 40}, {-20, 60}})));
   Drivers.DrivingCycle drivingCycle(                                                                                                                           table = [0, 0; 5, 50; 20, 50; 25, 0; 40, 0; 50, 100; 170, 100; 180, 50; 210, 50; 220, 0; 240, 0],
-    cycle=EMOTH.Drivers.Components.CycleType.NEDC,
     n=-1,
-    extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic)                                                                                                                                                                                            annotation (
+    extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic,
+    cycle=EMOTH.Drivers.Components.CycleType.WLTC)                                                                                                                                                                                                         annotation (
     Placement(transformation(extent = {{-40, 70}, {-20, 90}})));
   EMOTH.Accessories.ElectricalAccessories electricalAccessories(P = 5000) annotation (
     Placement(transformation(extent = {{-60, -90}, {-40, -70}})));
