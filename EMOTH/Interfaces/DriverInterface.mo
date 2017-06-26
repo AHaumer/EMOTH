@@ -14,6 +14,7 @@ expandable connector DriverInterface "Bus interface to driver"
   Modelica.SIunits.Voltage vDC "DC voltage";
   Modelica.SIunits.Current iDC "DC current";
   Modelica.SIunits.Power pDC "DC power";
+  EMOTH.Drivers.Components.LinearEnergyConsumption Eav "Average energy consumption per distance";
   annotation (Documentation(info="<html>
 <p>
 Bus to exchange signals between <a href=\"modelica://EMOTH.Drivers.DrivingCycle\">driving cycle</a>, <a href=\"modelica://EMOTH.Drivers.Driver\">driver</a> and 

@@ -21,5 +21,9 @@ class ReleaseNotes "Release notes"
 <ul>
 <li>Added CADC Common Artemis Driving Cycles (Urban, Rural Road, Motor Highway)</li>
 </ul>
+<h5>Version 1.4.0, 2017-06-26</h5>
+<ul>
+<li>Added average energy consumption [kW.h/km]</li>
+</ul>
 </html>"));
 end ReleaseNotes;

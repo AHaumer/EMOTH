@@ -1,4 +1,6 @@
 CycleType
 SpeedConversion
+LinearEnergyConsumption
 SplitPI
 RecuperationController
+EnergyConsumption

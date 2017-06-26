@@ -46,7 +46,7 @@ package EMOTH "Electric Mobility OTH"
 
 
 
-  annotation (version="1.3.0", versionDate="2017-06-25",
+  annotation (version="1.4.0", versionDate="2017-06-26",
     uses(Modelica(version="3.2.2"), VehicleInterfaces(version="1.2.4")),
     preferredView="info", Documentation(info="<html>
 <p><img src=\"modelica://EMOTH/Resources/Images/OTH_EI.png\" align=\"middle\"></p>

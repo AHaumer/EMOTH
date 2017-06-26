@@ -48,22 +48,25 @@ protected
         transformation(
         extent={{-6,6},{6,-6}},
         rotation=180,
-        origin={0,-50})));
+        origin={-50,-50})));
   Modelica.Blocks.Routing.RealPassThrough vDC annotation (Placement(
         transformation(
         extent={{-6,6},{6,-6}},
         rotation=180,
-        origin={-20,-60})));
+        origin={-30,-60})));
   Modelica.Blocks.Routing.RealPassThrough iDC annotation (Placement(
         transformation(
         extent={{-6,6},{6,-6}},
         rotation=180,
-        origin={-40,-70})));
+        origin={-10,-70})));
   Modelica.Blocks.Routing.RealPassThrough pDC annotation (Placement(
         transformation(
         extent={{-6,6},{6,-6}},
         rotation=180,
-        origin={-60,-80})));
+        origin={10,-80})));
+public
+  Components.EnergyConsumption energyConsumption
+    annotation (Placement(transformation(extent={{-64,-36},{-76,-24}})));
 equation
   connect(v.y, driverInterface.v) annotation (Line(points={{-26.6,80},{-26.6,80},
           {-100.1,80},{-100.1,0.1}},
@@ -97,22 +100,22 @@ equation
       points={{60,-70},{80,-70},{80,59.9},{100.1,59.9}},
       color={255,204,51},
       thickness=0.5));
-  connect(SoC.u, batteryBus.SoC) annotation (Line(points={{7.2,-50},{28,-50},{
-          50,-50},{50,-70.05},{60.05,-70.05}}, color={0,0,127}));
-  connect(SoC.y, driverInterface.SoC) annotation (Line(points={{-6.6,-50},{-54,
-          -50},{-100.1,-50},{-100.1,0.1}}, color={0,0,127}));
-  connect(vDC.u, batteryBus.vDC) annotation (Line(points={{-12.8,-60},{18,-60},
-          {50,-60},{50,-70.05},{60.05,-70.05}}, color={0,0,127}));
-  connect(iDC.u, batteryBus.iDC) annotation (Line(points={{-32.8,-70},{60.05,
-          -70},{60.05,-70.05}}, color={0,0,127}));
-  connect(pDC.u, batteryBus.PDC) annotation (Line(points={{-52.8,-80},{-2,-80},
-          {50,-80},{50,-70.05},{60.05,-70.05}}, color={0,0,127}));
-  connect(vDC.y, driverInterface.vDC) annotation (Line(points={{-26.6,-60},{-64,
-          -60},{-100.1,-60},{-100.1,0.1}}, color={0,0,127}));
-  connect(iDC.y, driverInterface.iDC) annotation (Line(points={{-46.6,-70},{
+  connect(SoC.u, batteryBus.SoC) annotation (Line(points={{-42.8,-50},{50,-50},
+          {50,-70.05},{60.05,-70.05}},         color={0,0,127}));
+  connect(SoC.y, driverInterface.SoC) annotation (Line(points={{-56.6,-50},{
+          -100.1,-50},{-100.1,0.1}},       color={0,0,127}));
+  connect(vDC.u, batteryBus.vDC) annotation (Line(points={{-22.8,-60},{50,-60},
+          {50,-70.05},{60.05,-70.05}},          color={0,0,127}));
+  connect(iDC.u, batteryBus.iDC) annotation (Line(points={{-2.8,-70},{60.05,-70},
+          {60.05,-70.05}},      color={0,0,127}));
+  connect(pDC.u, batteryBus.PDC) annotation (Line(points={{17.2,-80},{50,-80},{
+          50,-70.05},{60.05,-70.05}},           color={0,0,127}));
+  connect(vDC.y, driverInterface.vDC) annotation (Line(points={{-36.6,-60},{
+          -100.1,-60},{-100.1,0.1}},       color={0,0,127}));
+  connect(iDC.y, driverInterface.iDC) annotation (Line(points={{-16.6,-70},{
           -100.1,-70},{-100.1,0.1}}, color={0,0,127}));
-  connect(pDC.y, driverInterface.pDC) annotation (Line(points={{-66.6,-80},{-84,
-          -80},{-100.1,-80},{-100.1,0.1}}, color={0,0,127}));
+  connect(pDC.y, driverInterface.pDC) annotation (Line(points={{3.4,-80},{
+          -100.1,-80},{-100.1,0.1}},       color={0,0,127}));
   connect(forwardDetection.u, driverInterface.vPreview) annotation (Line(points=
          {{-58,30},{-40,30},{-40,0},{-100.1,0},{-100.1,0.1}}, color={0,0,127}));
   connect(forwardDetection.y, driverInterface.forward) annotation (Line(points={
@@ -127,6 +130,13 @@ equation
   connect(recuperationController.throttle, electricMotorBus.throttle)
     annotation (Line(points={{11,-6},{20,-6},{20,-30.05},{60.05,-30.05}}, color=
          {0,0,127}));
+  connect(energyConsumption.u2, batteryBus.EDC) annotation (Line(points={{-62.8,
+          -33.6},{50,-33.6},{50,-70.05},{60.05,-70.05}}, color={0,0,127}));
+  connect(energyConsumption.u1, chassisBus.s) annotation (Line(points={{-62.8,
+          -26.4},{-30,-26.4},{-30,60},{50,60},{50,79.95},{60.05,79.95}}, color=
+          {0,0,127}));
+  connect(energyConsumption.y, driverInterface.Eav) annotation (Line(points={{
+          -76.6,-30},{-100.1,-30},{-100.1,0.1}}, color={0,0,127}));
   annotation (Documentation(info="<html>
 <p>
 The driver environment communicates measured values from the sub-busses of the <a href=\"modelica://VehicleInterfaces.Interfaces.ControlBus\">control bus</a> 
