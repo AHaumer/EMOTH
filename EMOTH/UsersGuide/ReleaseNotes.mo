@@ -25,5 +25,9 @@ class ReleaseNotes "Release notes"
 <ul>
 <li>Added average energy consumption [kW.h/km]</li>
 </ul>
+<h5>Version 1.4.1, 2020-03-01</h5>
+<ul>
+<li>Upgrade to Modelica 3.2.3 and VehicleInterfacs 1.2.5</li>
+</ul>
 </html>"));
 end ReleaseNotes;

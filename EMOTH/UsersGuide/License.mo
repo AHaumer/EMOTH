@@ -5,7 +5,7 @@ class License "Copyright and License"
     Documentation(info="<html>
 <h4>Copyright and License (BSD 3-Clause)</h4>
 <p>
-&copy; 2016-2017 <a HREF=\"https://www.oth-regensburg.de/en/faculties/electrical-engineering-and-information-technology.html\">OTH Regensburg, Faculty of Electrical Engineering and Information Technology</a>,
+&copy; 2016-2020 <a HREF=\"https://www.oth-regensburg.de/en/faculties/electrical-engineering-and-information-technology.html\">OTH Regensburg, Faculty of Electrical Engineering and Information Technology</a>,
 Alexander Grimm and Anton Haumer.
 </p>
 <p>

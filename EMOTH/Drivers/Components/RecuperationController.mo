@@ -18,15 +18,15 @@ protected
   Boolean SoCLim = not pre(SoCLim) and SoC.y>SoCHi or pre(SoCLim) and SoC.y>=SoCLo;
   constant Real vMin=0.5;
   Boolean vLim = abs(v.y)<vMin;
-  VehicleInterfaces.Blocks.RealPassThrough v
+  Modelica.Blocks.Routing.RealPassThrough  v
     annotation (Placement(transformation(extent={{-66,-46},{-54,-34}})));
-  VehicleInterfaces.Blocks.BooleanPassThrough Forward
+  Modelica.Blocks.Routing.BooleanPassThrough  Forward
     annotation (Placement(transformation(extent={{-66,-26},{-54,-14}})));
-  VehicleInterfaces.Blocks.RealPassThrough SoC
+  Modelica.Blocks.Routing.RealPassThrough  SoC
     annotation (Placement(transformation(extent={{-66,-6},{-54,6}})));
-  VehicleInterfaces.Blocks.RealPassThrough Throttle
+  Modelica.Blocks.Routing.RealPassThrough  Throttle
     annotation (Placement(transformation(extent={{-66,14},{-54,26}})));
-  VehicleInterfaces.Blocks.RealPassThrough Fn_brake
+  Modelica.Blocks.Routing.RealPassThrough  Fn_brake
     annotation (Placement(transformation(extent={{-66,34},{-54,46}})));
 initial equation
   pre(SoCLim)=SoC.y>SoCHi;
