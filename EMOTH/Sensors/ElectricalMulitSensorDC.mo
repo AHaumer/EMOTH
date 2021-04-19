@@ -1,7 +1,7 @@
 within EMOTH.Sensors;
 model ElectricalMulitSensorDC
   "Sensor to measure DC voltage, current and power"
-  extends Modelica.Icons.RotationalSensor;
+  extends Modelica.Icons.RoundSensor;
   parameter Boolean invertV=false "Invert voltage?";
   parameter Boolean invertI=false "Invert current?";
   parameter Boolean invertP=false "Invert power?";

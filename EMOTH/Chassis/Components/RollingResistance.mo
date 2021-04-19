@@ -3,10 +3,10 @@ model RollingResistance
   "Constant force changing sign with speed, multiplied by cos(atan(inclination))"
   extends Modelica.Mechanics.Translational.Interfaces.PartialForce;
   import Modelica.Constants.g_n;
-  parameter Modelica.SIunits.Mass m "Total mass including passengers";
-  parameter Modelica.SIunits.Velocity v0(final min=Modelica.Constants.eps, start=0.1)
-    "Regularization below v0";
-  Modelica.SIunits.Velocity v
+  parameter Modelica.Units.SI.Mass m "Total mass including passengers";
+  parameter Modelica.Units.SI.Velocity v0(final min=Modelica.Constants.eps,
+      start=0.1) "Regularization below v0";
+  Modelica.Units.SI.Velocity v
     "Velocity of flange with respect to support (= der(s))";
   Modelica.Blocks.Interfaces.RealInput inclination "Inclination"
     annotation (Placement(transformation(extent={{-140,-20},{-100,20}})));

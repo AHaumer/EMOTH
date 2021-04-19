@@ -7,25 +7,27 @@ model GearConstantEfficiency
     "Transmission ratio (flange_a.phi/flange_b.phi)";
   parameter Real eta(final min = eps, final max = 1, start = 1)
     "Constant efficiency";
-  parameter Modelica.SIunits.AngularVelocity w_min(final min = eps, start = eps)
+  parameter Modelica.Units.SI.AngularVelocity w_min(final min=eps, start=eps)
     "Speed limit for regularization w.r.t. flange_a";
-  parameter Modelica.SIunits.Torque tau_min(final min = eps, start = eps)
+  parameter Modelica.Units.SI.Torque tau_min(final min=eps, start=eps)
     "Torque limit for regularization w.r.t. flange_a";
   extends
     Modelica.Mechanics.Rotational.Interfaces.PartialElementaryTwoFlangesAndSupport2;
   parameter Boolean useHeatPort = false "=true, if heatPort is enabled" annotation(Evaluate = true, HideResult = true, choices(checkBox = true));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a heatPort(final Q_flow = -lossPower) if useHeatPort
     "Optional port to which dissipated losses are transported in form of heat"   annotation(Placement(transformation(extent = {{-110, 90}, {-90, 110}}), iconTransformation(extent = {{-110, 90}, {-90, 110}})));
-  Modelica.SIunits.Angle phi_a "Angle between flange a and support";
-  Modelica.SIunits.Angle phi_b "Angle between flange b and support";
-  Modelica.SIunits.AngularVelocity w_a "Angular velocity between flange a and support";
-  Modelica.SIunits.AngularVelocity w_b "Angular velocity between flange b and support";
-  Modelica.SIunits.Torque tau_a "Torque at flange a";
-  Modelica.SIunits.Torque tau_b "Torque at flange b";
-  Modelica.SIunits.Torque tau_f "Friction torque";
-  Modelica.SIunits.Power p_a "Power at flange a";
-  Modelica.SIunits.Power p_b "Power at flange b";
-  Modelica.SIunits.Power lossPower
+  Modelica.Units.SI.Angle phi_a "Angle between flange a and support";
+  Modelica.Units.SI.Angle phi_b "Angle between flange b and support";
+  Modelica.Units.SI.AngularVelocity w_a
+    "Angular velocity between flange a and support";
+  Modelica.Units.SI.AngularVelocity w_b
+    "Angular velocity between flange b and support";
+  Modelica.Units.SI.Torque tau_a "Torque at flange a";
+  Modelica.Units.SI.Torque tau_b "Torque at flange b";
+  Modelica.Units.SI.Torque tau_f "Friction torque";
+  Modelica.Units.SI.Power p_a "Power at flange a";
+  Modelica.Units.SI.Power p_b "Power at flange b";
+  Modelica.Units.SI.Power lossPower
     "Loss power leaving component via heatPort (> 0, if heat is flowing out of component)";
   Real eff "Efficiency";
 equation

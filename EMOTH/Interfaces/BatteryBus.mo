@@ -1,11 +1,11 @@
 within EMOTH.Interfaces;
 expandable connector BatteryBus "EnergyStorage bus"
   extends VehicleInterfaces.Interfaces.BatteryBus;
-  Modelica.SIunits.Voltage vDC "DC voltage";
-  Modelica.SIunits.Current iDC "DC current";
-  Modelica.SIunits.Power PDC "DC power";
-  Modelica.SIunits.Power Losses "Losses";
-  Modelica.SIunits.Energy EDC "Energy consumption";
+  Modelica.Units.SI.Voltage vDC "DC voltage";
+  Modelica.Units.SI.Current iDC "DC current";
+  Modelica.Units.SI.Power PDC "DC power";
+  Modelica.Units.SI.Power Losses "Losses";
+  Modelica.Units.SI.Energy EDC "Energy consumption";
   Real SoC "State of charge";
   annotation (Documentation(info="<html>
 <p>

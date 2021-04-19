@@ -1,11 +1,11 @@
 within EMOTH.Examples.TestComponents;
 model TestIdealPowerConverter "Test field weakening block"
   extends Modelica.Icons.Example;
-  import Modelica.SIunits.Conversions.from_rpm;
+  import Modelica.Units.Conversions.from_rpm;
   import Modelica.Constants.eps;
-  output Modelica.SIunits.Power Pm=Pmechanical.y;
-  output Modelica.SIunits.Power Pe=Pelectrical.power;
-  output Modelica.SIunits.Power Ploss=constantEfficiency.y;
+  output Modelica.Units.SI.Power Pm=Pmechanical.y;
+  output Modelica.Units.SI.Power Pe=Pelectrical.power;
+  output Modelica.Units.SI.Power Ploss=constantEfficiency.y;
   output Real eff=if noEvent(Pm > eps) then Pm/Pe elseif noEvent(Pm < -eps) then Pe/Pm else 1;
   Modelica.Electrical.Analog.Basic.Resistor resistor(
     final R=0.01,

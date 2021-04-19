@@ -9,7 +9,7 @@ record DriveTestData "Test drive parameters"
     tauMax=500,
     T=0.005,
     J=0.1);
-  import Modelica.SIunits.Conversions.from_rpm;
+  import Modelica.Units.Conversions.from_rpm;
   annotation(defaultComponentPrefixes="parameter", Documentation(info="<html>
 <p>Parameters for a generic electric test drive.</p>
 </html>"));

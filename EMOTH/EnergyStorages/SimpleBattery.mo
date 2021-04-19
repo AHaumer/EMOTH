@@ -5,12 +5,13 @@ model SimpleBattery "Simple battery model"
     includeHeatPort=false,
     final usingMultiBodyChassis=false);
   extends EMOTH.Icons.EnergyStorage;
-  import Modelica.SIunits.Conversions.from_Ah;
+  import Modelica.Units.Conversions.from_Ah;
   parameter ParameterRecords.EnergyStorages.BatteryData batteryData
     annotation (Placement(transformation(extent={{60,-80},{80,-60}})));
   parameter Real SoC0(final min=0, final max=1)=1 "Initial state of charge"
     annotation(Dialog(group="Initialization"));
-  output Modelica.SIunits.Energy EDC=integratorEnergy.y "DC energy consumption";
+  output Modelica.Units.SI.Energy EDC=integratorEnergy.y
+    "DC energy consumption";
   output Real SoC=integratorCharge.y/from_Ah(batteryData.QNominal) "State of charge";
   Modelica.Electrical.Analog.Sources.SignalVoltage   constantVoltage
     annotation (Placement(transformation(

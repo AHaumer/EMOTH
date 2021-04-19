@@ -5,7 +5,7 @@ block ConstantEfficiency
   import Modelica.Constants.eps;
   parameter Real eta(final min = eps, final max = 1, start = 1)
     "Constant efficiency";
-  parameter Modelica.SIunits.Power p_min(final min = eps, start = eps)
+  parameter Modelica.Units.SI.Power p_min(final min=eps, start=eps)
     "Power limit for regularization";
 equation
   y = u*(if (u)>eps then 1/eta - 1 else 1 - eta)*(2/(1 + exp(-u/(0.01*p_min))) - 1);

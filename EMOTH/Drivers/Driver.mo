@@ -1,16 +1,18 @@
 within EMOTH.Drivers;
 model Driver "Simple driver model"
   extends VehicleInterfaces.Icons.Driver;
-  parameter Modelica.SIunits.Time TPreview=0.75 "Preview time for reference speed";
+  parameter Modelica.Units.SI.Time TPreview=0.75
+    "Preview time for reference speed";
   parameter Real kp=1 "Proportional gain of PI driver controller";
-  parameter Modelica.SIunits.Time Ti=0.1 "Integral time constant of PI driver controller";
+  parameter Modelica.Units.SI.Time Ti=0.1
+    "Integral time constant of PI driver controller";
   Modelica.Blocks.Continuous.LimPID PID(
     final k=kp,
     final Ti=Ti,
     final controllerType=Modelica.Blocks.Types.SimpleController.PI,
     final yMax=1,
     final yMin=-1,
-    initType=Modelica.Blocks.Types.InitPID.InitialState)
+    initType=Modelica.Blocks.Types.Init.InitialState)
     annotation (Placement(transformation(extent={{-20,-10},{0,10}})));
   Interfaces.DriverInterface driverInterface annotation (Placement(
         transformation(

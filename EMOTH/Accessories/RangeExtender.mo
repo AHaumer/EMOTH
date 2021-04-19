@@ -5,7 +5,7 @@ model RangeExtender "Simple model of a range extender"
     final includeHeatPort=false,
     final usingMultiBodyChassis=false);
   extends VehicleInterfaces.Icons.Engine;
-  parameter Modelica.SIunits.Power P=0 "Constant power production";
+  parameter Modelica.Units.SI.Power P=0 "Constant power production";
   parameter Real SoCLo=0.4 "Start REX when SoC falls below SoCLo";
   parameter Real SoCHi=0.8 "Stop  REX when SoC rises above SoCHi";
   Modelica.Blocks.Logical.Hysteresis hysteresis(

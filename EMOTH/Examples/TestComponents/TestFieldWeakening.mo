@@ -1,9 +1,11 @@
 within EMOTH.Examples.TestComponents;
 model TestFieldWeakening "Test field weakening block"
   extends Modelica.Icons.Example;
-  import Modelica.SIunits.Conversions.from_rpm;
-  output Modelica.SIunits.Torque tauBreakDown=fieldWeakening.tauBreakDown*(if w.y<fieldWeakening.wBase then 1 else (fieldWeakening.wBase/w.y)^2);
-  output Modelica.SIunits.Torque tauMax=fieldWeakening.tauMax*(if w.y<fieldWeakening.wBase then 1 else (fieldWeakening.wBase/w.y));
+  import Modelica.Units.Conversions.from_rpm;
+  output Modelica.Units.SI.Torque tauBreakDown=fieldWeakening.tauBreakDown*(if
+      w.y < fieldWeakening.wBase then 1 else (fieldWeakening.wBase/w.y)^2);
+  output Modelica.Units.SI.Torque tauMax=fieldWeakening.tauMax*(if w.y <
+      fieldWeakening.wBase then 1 else (fieldWeakening.wBase/w.y));
   ElectricDrives.Components.FieldWeakening fieldWeakening(
     tauBreakDown=400,
     tauMax=200,

@@ -29,5 +29,9 @@ class ReleaseNotes "Release notes"
 <ul>
 <li>Upgrade to Modelica 3.2.3 and VehicleInterfacs 1.2.5</li>
 </ul>
+<h5>Version 1.5.0, 2021-04-19</h5>
+<ul>
+<li>Upgrade to Modelica 4.0.0 and VehicleInterfacs 2.0.0</li>
+</ul>
 </html>"));
 end ReleaseNotes;

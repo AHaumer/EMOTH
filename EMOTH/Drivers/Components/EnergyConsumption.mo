@@ -1,7 +1,8 @@
 within EMOTH.Drivers.Components;
 block EnergyConsumption "Calculate energy consumption per distance"
   extends Modelica.Blocks.Interfaces.SI2SO(u1(unit="m"), u2(unit="J"), y(unit="kW.h/km"));
-  parameter Modelica.SIunits.Length dMin=1000 "Minimum distance for calculation";
+  parameter Modelica.Units.SI.Length dMin=1000
+    "Minimum distance for calculation";
 equation
   y=if noEvent(abs(u1)<dMin) then 0 else u2/u1/3600;
   annotation (Icon(graphics={Text(

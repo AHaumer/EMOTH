@@ -11,12 +11,15 @@ model Track "Simple description of track"
     annotation(Dialog(group="Wind"));
   parameter Boolean convert_from_kmh=true "Convert input signal from km/h?"
   annotation(Dialog(group="Wind", enable=not useConstantWind));
-  parameter Modelica.SIunits.Velocity VWind(displayUnit="km/h")=0 "Constant wind speed (>0 in direction of track)"
-    annotation(Dialog(group="Wind", enable=useConstantWind));
-  parameter Modelica.SIunits.Position x0=0 "Initial horizontal x-position of vehicle"
-    annotation(Dialog(group="Initialization"));
-  parameter Modelica.SIunits.Position z0=0 "Initial vertical z-position of vehicle"
-    annotation(Dialog(group="Initialization"));
+  parameter Modelica.Units.SI.Velocity VWind(displayUnit="km/h") = 0
+    "Constant wind speed (>0 in direction of track)"
+    annotation (Dialog(group="Wind", enable=useConstantWind));
+  parameter Modelica.Units.SI.Position x0=0
+    "Initial horizontal x-position of vehicle"
+    annotation (Dialog(group="Initialization"));
+  parameter Modelica.Units.SI.Position z0=0
+    "Initial vertical z-position of vehicle"
+    annotation (Dialog(group="Initialization"));
 
   VehicleInterfaces.Interfaces.ControlBus controlBus annotation (Placement(
         transformation(

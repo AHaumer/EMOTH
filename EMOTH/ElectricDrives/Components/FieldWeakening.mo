@@ -1,16 +1,17 @@
 within EMOTH.ElectricDrives.Components;
 block FieldWeakening "Torque limits by field weakening block"
   extends Modelica.Blocks.Interfaces.SISO;
-  parameter Modelica.SIunits.AngularVelocity wBase "Begin of field weakenng";
-  parameter Modelica.SIunits.Torque tauBreakDown "Breakdown torque";
-  parameter Modelica.SIunits.Torque tauMax "Maximal torque";
+  parameter Modelica.Units.SI.AngularVelocity wBase "Begin of field weakenng";
+  parameter Modelica.Units.SI.Torque tauBreakDown "Breakdown torque";
+  parameter Modelica.Units.SI.Torque tauMax "Maximal torque";
   Modelica.Blocks.Interfaces.RealInput w "Mechanical speed signal"
                                          annotation (Placement(transformation(
         extent={{-20,-20},{20,20}},
         rotation=90,
         origin={0,-120})));
 protected
-  parameter Modelica.SIunits.AngularVelocity wFW2=wBase*0.95*tauBreakDown/tauMax "Field weakening 2";
+  parameter Modelica.Units.SI.AngularVelocity wFW2=wBase*0.95*tauBreakDown/
+      tauMax "Field weakening 2";
 equation
   if noEvent(abs(w)<wBase) then
     y = u*tauMax;

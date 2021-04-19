@@ -7,8 +7,8 @@ model ElectricalAccessories
     final usingMultiBodyChassis=false);
   extends VehicleInterfaces.Icons.Accessories;
   parameter Boolean useConstantPower=true "Use constant power consumpton, otherwise input";
-  parameter Modelica.SIunits.Power P=0 "Constant power consumption"
-    annotation(Dialog(enable=useConstantPower));
+  parameter Modelica.Units.SI.Power P=0 "Constant power consumption"
+    annotation (Dialog(enable=useConstantPower));
   Modelica.Blocks.Interfaces.RealInput p if not useConstantPower
     annotation (Placement(transformation(extent={{-140,-20},{-100,20}})));
   Modelica.Blocks.Math.Gain gain(final k=1)

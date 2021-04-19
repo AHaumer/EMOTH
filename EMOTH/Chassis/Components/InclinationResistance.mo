@@ -2,7 +2,7 @@ within EMOTH.Chassis.Components;
 model InclinationResistance "Inclination resistance"
   extends Modelica.Mechanics.Translational.Interfaces.PartialForce;
   import Modelica.Constants.g_n;
-  parameter Modelica.SIunits.Mass m "Total vehicle mass";
+  parameter Modelica.Units.SI.Mass m "Total vehicle mass";
   Modelica.Blocks.Interfaces.RealInput inclination "Inclination"
     annotation (Placement(transformation(extent={{-140,-20},{-100,20}})));
 equation

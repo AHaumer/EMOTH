@@ -25,8 +25,10 @@ model DrivingCycle "Definition of the driving cycle v(t)"
   parameter Modelica.Blocks.Types.Extrapolation extrapolation=Modelica.Blocks.Types.Extrapolation.NoExtrapolation
     "Extrapolation of data outside the definition range"
     annotation (Dialog(group="Table data interpretation"));
-  final parameter Modelica.SIunits.Time t_min=combiTable.u_min "Mimimum time of table";
-  final parameter Modelica.SIunits.Time t_max=combiTable.u_max "Maximum time of table";
+  final parameter Modelica.Units.SI.Time t_min=combiTable.u_min
+    "Mimimum time of table";
+  final parameter Modelica.Units.SI.Time t_max=combiTable.u_max
+    "Maximum time of table";
 protected
   final parameter Real conversionFactor=
     if (cycle==CycleType.Table and speedConversion==SpeedConversion.kmh)
@@ -79,7 +81,7 @@ public
     final tableName=internalTableName,
     final fileName=internalFileName)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  Modelica.Blocks.Sources.Clock clock(offset=0, startTime=0)
+  Modelica.Blocks.Sources.ContinuousClock clock(offset=0, startTime=0)
     annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
   Blocks.CombiTable1Dse combiTablePreview(
     final extrapolation=extrapolation, final tableOnFile=internalTableOnFile,

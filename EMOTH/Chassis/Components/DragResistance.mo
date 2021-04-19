@@ -1,11 +1,11 @@
 within EMOTH.Chassis.Components;
 model DragResistance "Quadratic dependency of force versus speed"
   extends Modelica.Mechanics.Translational.Interfaces.PartialForce;
-  parameter Modelica.SIunits.Force f_nominal
+  parameter Modelica.Units.SI.Force f_nominal
     "Nominal force (if negative, force is acting as load)";
-  parameter Modelica.SIunits.Velocity v_nominal(min=Modelica.Constants.eps)
+  parameter Modelica.Units.SI.Velocity v_nominal(min=Modelica.Constants.eps)
     "Nominal speed";
-  Modelica.SIunits.Velocity v
+  Modelica.Units.SI.Velocity v
     "Velocity of flange with respect to support (= der(s))";
   Modelica.Blocks.Interfaces.RealInput vWind
     annotation (Placement(transformation(extent={{-140,-20},{-100,20}})));

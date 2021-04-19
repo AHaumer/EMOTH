@@ -5,9 +5,12 @@ model Car2Axle "Car chassis with 2 axles"
   extends VehicleInterfaces.Icons.Chassis;
   parameter EMo.ParameterRecords.Vehicles.VehicleData vehicleData
     annotation (Placement(transformation(extent={{20,-10},{40,10}})));
-  output Modelica.SIunits.Position s(start=0)=mass.s "Vehicle position";
-  output Modelica.SIunits.Velocity v(start=0, displayUnit="km/h")=mass.v "Vehicle velocity";
-  output Modelica.SIunits.Acceleration a(start=0)=mass.a "Vehicle acceleration";
+  output Modelica.Units.SI.Position s(start=0) = mass.s "Vehicle position";
+  output Modelica.Units.SI.Velocity v(
+    start=0,
+    displayUnit="km/h") = mass.v "Vehicle velocity";
+  output Modelica.Units.SI.Acceleration a(start=0) = mass.a
+    "Vehicle acceleration";
   Modelica.Mechanics.Translational.Components.Mass mass(final m=vehicleData.m)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Mechanics.Translational.Components.IdealRollingWheel wheel_1(final
