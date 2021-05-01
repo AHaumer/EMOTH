@@ -1,5 +1,5 @@
 within EMOTH.ParameterRecords.Vehicles;
-record VehicleTestData "Vehicle data for testing"
+record VehicleTestData "Vehicle test data"
   extends VehicleData(
     DataName="TestCar",
     m=1500,
@@ -14,7 +14,8 @@ record VehicleTestData "Vehicle data for testing"
     ratioGear=5,
     etaGear=0.85,
     etaDiff=0.95);
-  annotation(defaultComponentPrefixes="parameter", Documentation(info="<html>
+  annotation(defaultComponentPrefixes="parameter", defaultComponentName="vehicleData",
+    Documentation(info="<html>
 <p>Parameters for a test vehicle.</p>
 </html>"));
 end VehicleTestData;

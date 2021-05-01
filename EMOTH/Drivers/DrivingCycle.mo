@@ -6,7 +6,7 @@ model DrivingCycle "Definition of the driving cycle v(t)"
   parameter EMOTH.Drivers.Components.CycleType cycle "Type of driving cycle";
   parameter EMOTH.Drivers.Components.SpeedConversion speedConversion=EMOTH.Drivers.Components.SpeedConversion.kmh "Speed conversion"
     annotation(Dialog(enable=cycle==CycleType.Table));
-  parameter Integer n=0 "Terminate after n  cycles (n<= means no termination)";
+  parameter Integer n=0 "Terminate after n  cycles (n<=0 means no termination)";
   parameter Boolean tableOnFile=false
     "= true, if table is defined on file or in function usertab"
     annotation (Dialog(group="Table data definition", enable=cycle==CycleType.Table));
@@ -29,6 +29,8 @@ model DrivingCycle "Definition of the driving cycle v(t)"
     "Mimimum time of table";
   final parameter Modelica.Units.SI.Time t_max=combiTable.u_max
     "Maximum time of table";
+  parameter Modelica.Units.SI.Velocity v0=combiTable.y0[1]*conversionFactor "Initial velocity in table"
+    annotation(Dialog(enable=false));
 protected
   final parameter Real conversionFactor=
     if (cycle==CycleType.Table and speedConversion==SpeedConversion.kmh)

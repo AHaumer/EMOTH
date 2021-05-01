@@ -6,7 +6,20 @@ model RearAxleDrive
   extends VehicleInterfaces.Icons.Driveline;
   parameter Boolean includeHeatPort = false "Include the driveline heat port"
     annotation(Evaluate=true, HideResult=true, choices(checkBox=true));
-  parameter ParameterRecords.Vehicles.VehicleData vehicleData
+  parameter ParameterRecords.Vehicles.VehicleData vehicleData(
+    m=261,
+    aNominal=9,
+    vNominal(displayUnit="km/h") = 22.222222222222,
+    brakeFront=0.7,
+    A=1.166,
+    cw=0.3,
+    rFront=0.2353,
+    JFront=0.3,
+    rRear=0.2353,
+    JRear=0.3,
+    ratioGear=5.1724,
+    etaGear=0.99,
+    etaDiff=0.98)
     annotation (Placement(transformation(extent={{80,-10},{100,10}})));
   Components.Differential differential annotation (Placement(transformation(
         extent={{10,-10},{-10,10}},
@@ -102,8 +115,8 @@ equation
     annotation (Line(points={{-100,-20},{-80,-20}}, color={191,0,0}));
   connect(heatFlowSensor.port_a, gearConstantEfficiency.heatPort) annotation (
       Line(points={{-60,-20},{-14,-20},{-14,10},{-10,10}}, color={191,0,0}));
-  connect(heatFlowSensor.Q_flow, driveLineBus.Losses) annotation (Line(points={{-70,
-          -10},{-70,-10},{-70,40.05},{-100.05,40.05}}, color={0,0,127}));
+  connect(heatFlowSensor.Q_flow, driveLineBus.Losses) annotation (Line(points={{-70,-9},{-70,-9},{-70,40.05},{-100.05,40.05}},
+                                                       color={0,0,127}));
   annotation (Documentation(info="<html>
 <p>
 Model of a rear axle drive, driving both rear wheels by:

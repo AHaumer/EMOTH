@@ -47,9 +47,9 @@ equation
   connect(signalCurrent.n, n)
     annotation (Line(points={{60,0},{100,0},{100,0}}, color={0,0,255}));
   connect(integrator.y, signalCurrent.i)
-    annotation (Line(points={{41,-60},{50,-60},{50,-7}}, color={0,0,127}));
-  connect(powerSensor.power, feedback.u3) annotation (Line(points={{-58,-11},{
-          -58,-11},{-58,-52},{-12,-52}}, color={0,0,127}));
+    annotation (Line(points={{41,-60},{50,-60},{50,-12}},color={0,0,127}));
+  connect(powerSensor.power, feedback.u3) annotation (Line(points={{-60,-11},{
+          -60,-52},{-12,-52}},           color={0,0,127}));
   connect(Pmechanical, feedback.u1) annotation (Line(points={{0,-120},{0,-80},{
           -20,-80},{-20,-68},{-12,-68}}, color={0,0,127}));
   connect(feedback.y, integrator.u)

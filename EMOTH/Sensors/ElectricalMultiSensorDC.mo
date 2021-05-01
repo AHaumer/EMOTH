@@ -1,6 +1,5 @@
 within EMOTH.Sensors;
-model ElectricalMulitSensorDC
-  "Sensor to measure DC voltage, current and power"
+model ElectricalMultiSensorDC "Sensor to measure DC voltage, current and power"
   extends Modelica.Icons.RoundSensor;
   parameter Boolean invertV=false "Invert voltage?";
   parameter Boolean invertI=false "Invert current?";
@@ -66,11 +65,11 @@ equation
     annotation (Line(points={{-30,0},{100,0}}, color={0,0,255}));
   connect(voltageSensor.p, pc) annotation (Line(points={{0,-60},{0,-60},{0,-40},
           {-100,-40},{-100,0}}, color={0,0,255}));
-  connect(voltageSensor.v, gainV.u) annotation (Line(points={{-10,-70},{-36,-70},
+  connect(voltageSensor.v, gainV.u) annotation (Line(points={{-11,-70},{-11,-70},
           {-60,-70},{-60,68}}, color={0,0,127}));
   connect(gainV.y, voltage) annotation (Line(points={{-60,91},{-60,91},{-60,110},
           {-60,110}}, color={0,0,127}));
-  connect(currentSensor.i, gainI.u) annotation (Line(points={{-40,10},{-40,20},
+  connect(currentSensor.i, gainI.u) annotation (Line(points={{-40,11},{-40,20},
           {0,20},{0,68}}, color={0,0,127}));
   connect(gainI.y, current)
     annotation (Line(points={{0,91},{0,110},{0,110}}, color={0,0,127}));
@@ -78,9 +77,9 @@ equation
     annotation (Line(points={{60,91},{60,110},{60,110}}, color={0,0,127}));
   connect(product.y, gainP.u)
     annotation (Line(points={{60,61},{60,64.5},{60,68}}, color={0,0,127}));
-  connect(voltageSensor.v, product.u1) annotation (Line(points={{-10,-70},{-36,
+  connect(voltageSensor.v, product.u1) annotation (Line(points={{-11,-70},{-11,
           -70},{-60,-70},{-60,28},{54,28},{54,38}}, color={0,0,127}));
-  connect(currentSensor.i, product.u2) annotation (Line(points={{-40,10},{-40,
+  connect(currentSensor.i, product.u2) annotation (Line(points={{-40,11},{-40,
           20},{66,20},{66,38}}, color={0,0,127}));
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,100}}), graphics={
@@ -108,4 +107,4 @@ equation
 <li><i>January 12, 2006</i> by Anton Haumer implemented</li>
 </ul>
 </html>"));
-end ElectricalMulitSensorDC;
+end ElectricalMultiSensorDC;

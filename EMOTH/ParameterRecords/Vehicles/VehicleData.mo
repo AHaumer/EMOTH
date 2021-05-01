@@ -66,10 +66,11 @@ record VehicleData "Vehicle parameters"
       tab="Driveline",
       group="Result",
       enable=false));
-  annotation(defaultComponentPrefixes="parameter", Icon(graphics={Text(
+  annotation(defaultComponentPrefixes="parameter", defaultComponentName="vehicleData",
+    Icon(graphics={Text(
           extent={{-100,-50},{100,-100}},
           lineColor={28,108,200},
-          textString="%DataName"),                                Text(
+          textString="%DataName"), Text(
           extent={{-100,50},{100,0}},
           lineColor={28,108,200},
           textString="vehicle")}),

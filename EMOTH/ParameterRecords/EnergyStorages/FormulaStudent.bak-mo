@@ -1,0 +1,14 @@
+within EMOTH.ParameterRecords.EnergyStorages;
+record FormulaStudent "Formula Student"
+  extends BatteryData(
+    DataName="FormulaStudent",
+    VDC=399.6,
+    VDCmin=324,
+    Ri=0.108,
+    QNominal=16,
+    SoCmin=0.05);
+  annotation(defaultComponentPrefixes="parameter",  defaultComponentName="batteryData",
+    Documentation(info="<html>
+    <p>Parameters for Formula Student.</p>
+</html>"));
+end FormulaStudent;

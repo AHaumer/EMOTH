@@ -2,7 +2,7 @@ within EMOTH.Tracks.Components;
 block TrackDefinition "Define one parameter of the track"
   extends Modelica.Blocks.Interfaces.SISO;
   parameter ParameterRecords.SingleTrackData trackData
-    annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
+    annotation (Placement(transformation(extent={{-78,60},{-58,80}})));
   parameter Real yMax "Upper limits of signal";
   parameter Real yMin "Lower limits of signal";
   Modelica.Blocks.Sources.Constant constantValue(k=trackData.ConstantValue) if trackData.useConstant

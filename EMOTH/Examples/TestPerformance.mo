@@ -104,7 +104,7 @@ equation
       color={255,204,51},
       thickness=0.5));
   connect(rearAxleDrive.controlBus, battery.controlBus) annotation (Line(
-      points={{-10,6},{-14,6},{-14,30},{-86,30},{-86,-6},{-80,-6}},
+      points={{-10,6},{-14,6},{-14,30},{-84,30},{-84,-6},{-80,-6}},
       color={255,204,51},
       thickness=0.5));
   connect(track.controlBus, driverEnvironment.controlBus) annotation (Line(

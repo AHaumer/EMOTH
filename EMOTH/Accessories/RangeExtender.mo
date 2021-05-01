@@ -23,7 +23,7 @@ model RangeExtender "Simple model of a range extender"
     annotation (Placement(transformation(extent={{12,10},{-8,30}})));
   ElectricDrives.Components.IdealPowerConverter idealPowerConverter(final useLosses=false)
     annotation (Placement(transformation(extent={{-20,60},{-40,80}})));
-  Sensors.ElectricalMulitSensorDC electricalMulitSensorDC
+  Sensors.ElectricalMultiSensorDC electricalMulitSensorDC
     annotation (Placement(transformation(extent={{40,80},{20,60}})));
   Modelica.Blocks.Continuous.Integrator integratorEnergy(final k=1)
     annotation (Placement(transformation(extent={{60,-50},{80,-30}})));

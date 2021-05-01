@@ -1,0 +1,22 @@
+within EMOTH.ParameterRecords.Vehicles;
+record FormulaStudent "Formula student"
+  extends VehicleData(
+    DataName="FormulaStudent",
+    m=261,
+    aNominal=10,
+    vNominal=33.333333333333,
+    A=1.166,
+    cw=1.508,
+    rFront=0.2353,
+    JFront=0.125,
+    rRear=0.2353,
+    JRear=0.125,
+    brakeFront=0.7,
+    ratioGear=5.1724,
+    etaGear=0.98,
+    etaDiff=0.91);
+  annotation(defaultComponentPrefixes="parameter", defaultComponentName="vehicleData",
+    Documentation(info="<html>
+  <p>Parameters for Formula Student.</p>
+</html>"));
+end FormulaStudent;

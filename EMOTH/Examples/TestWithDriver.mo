@@ -2,8 +2,8 @@ within EMOTH.Examples;
 model TestWithDriver "Test with driver over a driving cycle"
   import EMOTH;
   extends Modelica.Icons.Example;
-  parameter EMOTH.ParameterRecords.Vehicles.VehicleTestData vehicleData annotation (
-    Placement(transformation(extent = {{30, -50}, {50, -30}})));
+  parameter EMOTH.ParameterRecords.Vehicles.VehicleTestData vehicleData
+    annotation (Placement(transformation(extent={{30,-50},{50,-30}})));
   Chassis.Car2Axle car2Axle(a(start = 0), s(start = 0, fixed = true), vehicleData = vehicleData, v(start = 0, fixed = true)) annotation (
     Placement(transformation(extent = {{24, -10}, {56, 10}})));
   Brakes.Brakes4wheels brakes4wheels(vehicleData = vehicleData, includeHeatPort = false) annotation (
@@ -69,7 +69,7 @@ equation
   connect(rearAxleDrive.controlBus, genericDrive.controlBus) annotation (
     Line(points = {{-10, 6}, {-14, 6}, {-14, 30}, {-44, 30}, {-44, -6}, {-40, -6}}, color = {255, 204, 51}, thickness = 0.5));
   connect(rearAxleDrive.controlBus, battery.controlBus) annotation (
-    Line(points = {{-10, 6}, {-14, 6}, {-14, 30}, {-86, 30}, {-86, -6}, {-80, -6}}, color = {255, 204, 51}, thickness = 0.5));
+    Line(points={{-10,6},{-14,6},{-14,30},{-84,30},{-84,-6},{-80,-6}},              color = {255, 204, 51}, thickness = 0.5));
   connect(track.controlBus, driverEnvironment.controlBus) annotation (
     Line(points = {{40, 56}, {40, 56}, {20, 56}}, color = {255, 204, 51}, thickness = 0.5));
   connect(driver.driverInterface, driverEnvironment.driverInterface) annotation (
@@ -85,9 +85,9 @@ equation
   connect(battery.pin_p, rangeExtender.pin_p) annotation (
     Line(points = {{-64, 10}, {-64, 10}, {-64, 22}, {-52, 22}, {-52, -58}, {-4, -58}, {-4, -70}}, color = {0, 0, 255}));
   connect(battery.controlBus, electricalAccessories.controlBus) annotation (
-    Line(points = {{-80, -6}, {-86, -6}, {-86, -86}, {-60, -86}}, color = {255, 204, 51}, thickness = 0.5));
+    Line(points={{-80,-6},{-84,-6},{-84,-86},{-60,-86}},          color = {255, 204, 51}, thickness = 0.5));
   connect(electricalAccessories.controlBus, rangeExtender.controlBus) annotation (
-    Line(points = {{-60, -86}, {-86, -86}, {-86, -94}, {-24, -94}, {-24, -86}, {-20, -86}}, color = {255, 204, 51}, thickness = 0.5));
+    Line(points={{-60,-86},{-84,-86},{-84,-94},{-24,-94},{-24,-86},{-20,-86}},              color = {255, 204, 51}, thickness = 0.5));
   annotation (
     experiment(StopTime = 86400, Interval = 0.1),
     Documentation(info = "<html>

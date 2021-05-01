@@ -1,12 +1,12 @@
 within EMOTH.Examples.TestComponents;
-model TestIdealPowerConverter "Test field weakening block"
+model TestIdealPowerConverter "Test ideal power converter with constant efficiency"
   extends Modelica.Icons.Example;
   import Modelica.Units.Conversions.from_rpm;
   import Modelica.Constants.eps;
   output Modelica.Units.SI.Power Pm=Pmechanical.y;
   output Modelica.Units.SI.Power Pe=Pelectrical.power;
   output Modelica.Units.SI.Power Ploss=constantEfficiency.y;
-  output Real eff=if noEvent(Pm > eps) then Pm/Pe elseif noEvent(Pm < -eps) then Pe/Pm else 1;
+  output Real eff=if noEvent(Pm > eps and Pe > eps) then Pm/Pe elseif noEvent(Pm < -eps) then Pe/Pm else 1;
   Modelica.Electrical.Analog.Basic.Resistor resistor(
     final R=0.01,
     final T_ref=293.15,
@@ -37,6 +37,10 @@ model TestIdealPowerConverter "Test field weakening block"
     duration=1,
     offset=10000)
     annotation (Placement(transformation(extent={{-90,-10},{-70,10}})));
+  ElectricDrives.Components.VariableEfficiency variableEfficiency(p_min=1)
+    annotation (Placement(transformation(extent={{-50,60},{-30,40}})));
+  Modelica.Blocks.Sources.Constant const(k=0.90)
+    annotation (Placement(transformation(extent={{-90,50},{-70,70}})));
 equation
   connect(resistor.p, constantVoltage.p)
     annotation (Line(points={{70,20},{80,20},{80,10}}, color={0,0,255}));
@@ -58,6 +62,10 @@ equation
           {-60,0},{-60,20},{-52,20}}, color={0,0,127}));
   connect(Pmechanical.y, idealPowerConverter.Pmechanical)
     annotation (Line(points={{-69,0},{-12,0}}, color={0,0,127}));
+  connect(Pmechanical.y, variableEfficiency.p) annotation (Line(points={{-69,0},
+          {-60,0},{-60,44},{-52,44}}, color={0,0,127}));
+  connect(const.y, variableEfficiency.tau) annotation (Line(points={{-69,60},{-60,
+          60},{-60,56},{-52,56}}, color={0,0,127}));
   annotation (experiment(Interval=0.0001), Documentation(info="<html>
 <p>
 Testing an <a href=\"modelica://EMOTH.ElectricDrives.Components.IdealPowerConverter\">ideal power converter</a>.

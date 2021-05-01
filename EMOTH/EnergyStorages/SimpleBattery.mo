@@ -6,19 +6,23 @@ model SimpleBattery "Simple battery model"
     final usingMultiBodyChassis=false);
   extends EMOTH.Icons.EnergyStorage;
   import Modelica.Units.Conversions.from_Ah;
-  parameter ParameterRecords.EnergyStorages.BatteryData batteryData
+  parameter ParameterRecords.EnergyStorages.BatteryData batteryData(
+    VDC=399.6,
+    VDCmin=324,
+    Ri=0.108,
+    QNominal=1728)
     annotation (Placement(transformation(extent={{60,-80},{80,-60}})));
   parameter Real SoC0(final min=0, final max=1)=1 "Initial state of charge"
     annotation(Dialog(group="Initialization"));
   output Modelica.Units.SI.Energy EDC=integratorEnergy.y
     "DC energy consumption";
   output Real SoC=integratorCharge.y/from_Ah(batteryData.QNominal) "State of charge";
-  Modelica.Electrical.Analog.Sources.SignalVoltage   constantVoltage
-    annotation (Placement(transformation(
+  Modelica.Electrical.Analog.Sources.SignalVoltage voltageSource annotation (
+      Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={-30,80})));
-  Sensors.ElectricalMulitSensorDC electricalMulitSensorDC(
+  Sensors.ElectricalMultiSensorDC electricalMulitSensorDC(
     final invertV=false,
     final invertI=true,
     final invertP=true)  annotation (Placement(
@@ -57,8 +61,12 @@ protected
 public
   Components.SoCdependentVoltage batteryVoltage(
     VDC=batteryData.VDC,
+    useLinearSOCdependency=batteryData.useLinearSOCdependency,
     VDCmin=batteryData.VDCmin,
-    SoCmin=batteryData.SoCmin) annotation (Placement(transformation(
+    SoCmin=batteryData.SoCmin,
+    tableName=batteryData.tableName,
+    fileName=batteryData.fileName)
+                               annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-30,50})));
@@ -71,15 +79,15 @@ equation
       thickness=0.5));
   connect(integratorEnergy.y, batteryBus.EDC) annotation (Line(points={{-71,0},
           {-100.05,0},{-100.05,0.05}}, color={0,0,127}));
-  connect(heatFlowSensor.Q_flow, batteryBus.Losses) annotation (Line(points={{-20,-60},
-          {-20,-50},{-80,-50},{-80,0.05},{-100.05,0.05}},      color={0,0,127}));
+  connect(heatFlowSensor.Q_flow, batteryBus.Losses) annotation (Line(points={{-20,-59},{-20,-50},{-80,-50},{-80,0.05},{-100.05,0.05}},
+                                                               color={0,0,127}));
   connect(integratorCharge.y, gain.u) annotation (Line(points={{-21,0},{-30,0},
           {-30,-30},{-48,-30}},color={0,0,127}));
   connect(gain.y, batteryBus.SoC) annotation (Line(points={{-71,-30},{-80,-30},{
           -80,0.05},{-100.05,0.05}}, color={0,0,127}));
-  connect(pin_n, constantVoltage.n) annotation (Line(points={{-60,100},{-60,100},
+  connect(pin_n, voltageSource.n) annotation (Line(points={{-60,100},{-60,100},
           {-60,80},{-40,80}}, color={0,0,255}));
-  connect(constantVoltage.p, resistor.p)
+  connect(voltageSource.p, resistor.p)
     annotation (Line(points={{-20,80},{-10,80},{0,80}}, color={0,0,255}));
   connect(resistor.n, electricalMulitSensorDC.nc)
     annotation (Line(points={{20,80},{30,80},{30,80}}, color={0,0,255}));
@@ -104,14 +112,19 @@ equation
           127}));
   connect(internalHeatPort, heatFlowSensor.port_b)
     annotation (Line(points={{-40,-70},{-35,-70},{-30,-70}}, color={191,0,0}));
-  connect(batteryVoltage.y, constantVoltage.v)
-    annotation (Line(points={{-30,61},{-30,73}}, color={0,0,127}));
+  connect(batteryVoltage.y, voltageSource.v)
+    annotation (Line(points={{-30,61},{-30,68}}, color={0,0,127}));
   connect(gain.y, batteryVoltage.u) annotation (Line(points={{-71,-30},{-80,-30},
           {-80,30},{-30,30},{-30,38}}, color={0,0,127}));
   annotation (Documentation(info="<html>
 <p>
 Simple model of a battery with constant no-load voltage and inner resistance. 
 Additionally, the current is integrated to obtain charge (and state of charge) of the battery, and the power is integrated to show the exchanged amount of energy.
+</p>
+<p>
+OCV is specified with respect to nominal OCV = VDC. 
+Dependency of OCV (open circuit voltage) versus SOC (state of charge) is either defined by a linear dependency <code>[SoCmin, VDCmin/VDC; 1,1]</code> 
+or as a table on file with first column = SOC in the range [SoCmin, 1] and second column = OCV in the range [VDCmin/VDC, 1].
 </p>
 </html>"));
 end SimpleBattery;
