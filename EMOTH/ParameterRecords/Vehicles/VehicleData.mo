@@ -5,6 +5,8 @@ record VehicleData "Vehicle parameters"
   parameter Modelica.Units.SI.Mass m "Total mass including driver";
   parameter Modelica.Units.SI.Acceleration aNominal "Nominal acceleration";
   parameter Modelica.Units.SI.Velocity vNominal "Nominal speed";
+  parameter Modelica.Units.SI.Length Rsub=(rFront + rRear)/2/ratioGear "Substitute wheel radius motor - track";
+  parameter Modelica.Units.SI.Mass mDyn=m + 2*(JFront + JRear)/((rFront + rRear)/2)^2 "Substitute (dynamic) mass";
 //Brakes
   parameter Real brakeFront=0.5 "Front braking force / total braking force"
     annotation(Dialog(tab="Brakes"));

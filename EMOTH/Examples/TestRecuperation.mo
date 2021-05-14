@@ -31,7 +31,14 @@ model TestRecuperation "Test with and without recuperation"
   Drivers.DriverEnvironment driverEnvironment(useDriverModel = true)
     annotation (
     Placement(transformation(extent={{0,40},{20,60}})));
-  Drivers.Driver driver annotation (
+  EMOTH.Drivers.CruiseControl
+                 cruiseControl(
+    T=driveData.T,
+    tauMax=driveData.tauMax,
+    J=driveData.J,
+    Rsub=vehicleData.Rsub,
+    mDyn=vehicleData.mDyn)
+                        annotation (
     Placement(transformation(extent = {{-40, 40}, {-20, 60}})));
   Drivers.DrivingCycle drivingCycle(
     n=0,
@@ -80,10 +87,16 @@ equation
     Line(points={{-10,6},{-14,6},{-14,30},{-84,30},{-84,-6},{-80,-6}},              color = {255, 204, 51}, thickness = 0.5));
   connect(track.controlBus, driverEnvironment.controlBus) annotation (
     Line(points={{40,56},{20,56}},                color = {255, 204, 51}, thickness = 0.5));
-  connect(driver.driverInterface, driverEnvironment.driverInterface) annotation (
-    Line(points={{-20,50},{0,50}},                 color = {85, 85, 255}, thickness = 0.5));
-  connect(driver.driverInterface, drivingCycle.driverInterface) annotation (
-    Line(points={{-20,50},{-10,50},{-10,80},{-20,80}},                     color = {85, 85, 255}, thickness = 0.5));
+  connect(cruiseControl.driverInterface, driverEnvironment.driverInterface)
+    annotation (Line(
+      points={{-20,50},{0,50}},
+      color={85,85,255},
+      thickness=0.5));
+  connect(cruiseControl.driverInterface, drivingCycle.driverInterface)
+    annotation (Line(
+      points={{-20,50},{-10,50},{-10,80},{-20,80}},
+      color={85,85,255},
+      thickness=0.5));
   annotation (
     experiment(
       StopTime=86400,
@@ -91,7 +104,7 @@ equation
       __Dymola_Algorithm="Dassl"),
     Documentation(info="<html>
 <p>
-A full electric vehicle is driven along a track by a <a href=\"modelica://EMOTH.Drivers.Driver\">driver</a> model, 
+A full electric vehicle is driven along a track by a <a href=\"modelica://EMOTH.Drivers.CruiseControl\">cruise control</a> device, 
 following the <a href=\"modelica://EMOTH.Drivers.DrivingCycle\">driving cycle</a>. 
 ElectricalAccessories and RangeExtender is omitted, rollingResistance, inclination and windSpeed are kept constant.
 Consider adapting the stop time to the number of consecutive driving cycles. 

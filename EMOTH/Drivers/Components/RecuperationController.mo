@@ -53,7 +53,7 @@ equation
 Simple logic to distribute a signal from the driver to the throttle and braking signals.
 </p>
 <p>
-Throttle signal is alway sent to the drive. The brake signal depends on useRecuperation, SoC and speed:
+Throttle signal is always sent to the drive. The brake signal depends on useRecuperation, SoC and speed:
 <ul>
 <li>If useRecuperation is false or SoC is above SoCmax or speed is below vMin, braking signal is sent to the mechanical brakes.</li>
 <li>Otherwise braking energy is recuperated.</li>
