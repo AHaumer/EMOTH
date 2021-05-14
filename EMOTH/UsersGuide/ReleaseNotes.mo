@@ -33,5 +33,17 @@ class ReleaseNotes "Release notes"
 <ul>
 <li>Upgrade to Modelica 4.0.0 and VehicleInterfacs 2.0.0</li>
 </ul>
+<h5>Version 1.6.0, 2021-05-01</h5>
+<ul>
+<li>Efficiency map of electric drive</li>
+</ul>
+<h5>Version 1.7.0, 2021-05-14</h5>
+<ul>
+<li>Cruise control device</li>
+</ul>
+<h5>Planned:</h5>
+<ul>
+<li>Voltage dependent drive torque limit</li>
+</ul>
 </html>"));
 end ReleaseNotes;
