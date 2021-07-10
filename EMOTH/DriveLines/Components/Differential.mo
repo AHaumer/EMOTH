@@ -9,10 +9,23 @@ model Differential "Simple model of a differential"
   Modelica.Mechanics.Rotational.Interfaces.Flange_b flange_b2
     "driven flange 2 (right)"
     annotation (Placement(transformation(extent={{90,-10},{110,10}})));
+  Modelica.Mechanics.Rotational.Components.IdealPlanetary idealPlanetary(final
+      ratio=-2) annotation (Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=270,
+        origin={0,-30})));
 equation
+  /*
   2*flange_a.phi = flange_b1.phi + flange_b2.phi;
   flange_b2.tau = flange_b1.tau;
   flange_a.tau = -(flange_b1.tau + flange_b2.tau);
+  */
+  connect(flange_a, idealPlanetary.ring)
+    annotation (Line(points={{0,-100},{0,-40}}, color={0,0,0}));
+  connect(idealPlanetary.sun, flange_b1) annotation (Line(points={{1.77636e-15,-20},
+          {1.77636e-15,0},{-100,0}}, color={0,0,0}));
+  connect(idealPlanetary.carrier, flange_b2)
+    annotation (Line(points={{4,-20},{4,0},{100,0}}, color={0,0,0}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
         Ellipse(
           extent={{-60,60},{60,-60}},

@@ -7,7 +7,7 @@ class Concept "Description of concepts"
 <h4>Vehicle structure</h4>
 <p>
 <ul>
-<li><a href=\"modelica://EMOTH.Chassis\">chassis model</a> with dynamic behaviour of the vehicle mass, four wheels with inertia and driving resistances (inclination, rolling resitance and drag)</li>
+<li><a href=\"modelica://EMOTH.Chassis\">chassis model</a> with dynamic behaviour of the vehicle mass, four wheels with inertia and driving resistances (inclination, rolling resistance and drag)</li>
 <li><a href=\"modelica://EMOTH.Brakes\">brake system</a></li>
 <li><a href=\"modelica://EMOTH.DriveLines\">drive line model</a> to distribute the motor torque to the wheels in a flexible way</li>
 <li><a href=\"modelica://EMOTH.ElectricDrives\">electric drive model</a> with electric machine, current/torque control and power convrter to connect to the dc source/battery</li>

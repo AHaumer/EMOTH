@@ -10,7 +10,7 @@ model RollingResistance
     "Velocity of flange with respect to support (= der(s))";
   Modelica.Blocks.Interfaces.RealInput inclination "Inclination"
     annotation (Placement(transformation(extent={{-140,-20},{-100,20}})));
-  Modelica.Blocks.Interfaces.RealInput rollingResistance "Inclination"
+  Modelica.Blocks.Interfaces.RealInput rollingResistance "Rolling resistance"
     annotation (Placement(transformation(extent={{-140,-80},{-100,-40}})));
 equation
   v = der(s);

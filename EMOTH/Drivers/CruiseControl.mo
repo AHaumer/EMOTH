@@ -62,7 +62,6 @@ This signal is split into the throttle and the brake signal.
           fillPattern=FillPattern.Solid,
           textString="%name"), Polygon(
           points={{-18,-5},{0,-19},{18,-5},{8,-5},{8,19},{-8,19},{-8,-5},{-18,-5}},
-
           lineColor={0,0,0},
           pattern=LinePattern.None,
           fillColor={0,140,72},

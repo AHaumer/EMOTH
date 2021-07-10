@@ -12,7 +12,7 @@ email: <a HREF=\"mailto:anton.haumer@oth-regensburg.de\">anton.haumer@oth-regens
 </blockquote>
 <blockquote>
 Alexander Grimm<br>
-email: <a href=\"mailto:alexander.grimm@st.oth-regensburg.de\">alexander.grimm@st.oth-regensburg.de</a>
+former student of OTH Regensburg
 </blockquote>
 </html>"));
 end Contact;
