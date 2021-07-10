@@ -36,7 +36,7 @@ model Car2Axle "Car chassis with 2 axles"
     annotation (Placement(transformation(
         extent={{10,10},{-10,-10}},
         rotation=0,
-        origin={52,70})));
+        origin={50,70})));
   Modelica.Mechanics.Rotational.Components.Inertia inertia_1(final J=
         vehicleData.JFront)                                  annotation (
       Placement(transformation(
@@ -115,7 +115,7 @@ equation
   connect(inertia_3.flange_a, wheelHub_3.flange) annotation (Line(points={{90,-70},
           {90,-99.95},{89.95,-99.95}}, color={0,0,0}));
   connect(inertia_4.flange_b, wheel_4.flangeR)
-    annotation (Line(points={{70,70},{70,70},{62,70}}, color={0,0,0}));
+    annotation (Line(points={{70,70},{60,70}},         color={0,0,0}));
   connect(inertia_4.flange_a, wheelHub_4.flange) annotation (Line(points={{90,70},
           {90,100.05},{89.95,100.05}}, color={0,0,0}));
   connect(controlBus.chassisBus, chassisBus) annotation (Line(
@@ -159,7 +159,7 @@ equation
   connect(rollingResistance2.flange, mass.flange_a)
     annotation (Line(points={{-30,70},{-10,70},{-10,0}}, color={0,127,0}));
   connect(wheel_4.flangeT, rollingResistance4.flange)
-    annotation (Line(points={{42,70},{30,70}}, color={0,127,0}));
+    annotation (Line(points={{40,70},{30,70}}, color={0,127,0}));
   connect(rollingResistance4.flange, mass.flange_b)
     annotation (Line(points={{30,70},{10,70},{10,0}}, color={0,127,0}));
   connect(wheel_3.flangeT, rollingResistance3.flange)
