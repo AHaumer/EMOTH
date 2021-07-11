@@ -1,9 +1,8 @@
 within EMOTH.Chassis;
 model Car2Axle "Car chassis with 2 axles"
-  import EMo = EMOTH;
   extends VehicleInterfaces.Chassis.Interfaces.TwoAxleBase(final usingMultiBodyDriveline=false);
   extends VehicleInterfaces.Icons.Chassis;
-  parameter EMo.ParameterRecords.Vehicles.VehicleData vehicleData
+  parameter EMOTH.ParameterRecords.Vehicles.VehicleData vehicleData
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
   output Modelica.Units.SI.Position s(start=0) = mass.s "Vehicle position";
   output Modelica.Units.SI.Velocity v(
@@ -61,9 +60,9 @@ model Car2Axle "Car chassis with 2 axles"
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={80,70})));
-  EMo.Sensors.TranslationalMultiSensor translationalMultiSensor
+  EMOTH.Sensors.TranslationalMultiSensor translationalMultiSensor
     annotation (Placement(transformation(extent={{-40,10},{-60,-10}})));
-  EMo.Chassis.Components.DragResistance
+  EMOTH.Chassis.Components.DragResistance
     dragResistance(
     final f_nominal=-vehicleData.Fdrag,
     final v_nominal=vehicleData.vNominal)
@@ -80,19 +79,19 @@ model Car2Axle "Car chassis with 2 axles"
     annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
   Modelica.Blocks.Continuous.Integrator integratorEnergy(final k=1)
     annotation (Placement(transformation(extent={{-120,40},{-140,60}})));
-  EMo.Chassis.Components.RollingResistance rollingResistance2(final m=
+  EMOTH.Chassis.Components.RollingResistance rollingResistance2(final m=
         vehicleData.m/4, final v0=1e-4*vehicleData.vNominal) annotation (
       Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=90,
         origin={-30,60})));
-  EMo.Chassis.Components.RollingResistance rollingResistance3(final m=
+  EMOTH.Chassis.Components.RollingResistance rollingResistance3(final m=
         vehicleData.m/4, final v0=1e-4*vehicleData.vNominal) annotation (
       Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=270,
         origin={30,-60})));
-  EMo.Chassis.Components.RollingResistance rollingResistance4(final m=
+  EMOTH.Chassis.Components.RollingResistance rollingResistance4(final m=
         vehicleData.m/4, final v0=1e-4*vehicleData.vNominal) annotation (
       Placement(transformation(
         extent={{-10,-10},{10,10}},

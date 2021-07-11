@@ -1,11 +1,10 @@
 within EMOTH.Brakes;
 model Brakes4wheels "Simple brake model 4 wheels"
-  import EMo = EMOTH;
   extends VehicleInterfaces.Brakes.Interfaces.TwoAxleBase(final usingMultiBodyChassis=false);
   extends VehicleInterfaces.Icons.Brakes;
   parameter Boolean includeHeatPort = false "Include the brake heat port"
     annotation(Evaluate=true, HideResult=true, choices(checkBox=true));
-  parameter EMo.ParameterRecords.Vehicles.VehicleData vehicleData
+  parameter EMOTH.ParameterRecords.Vehicles.VehicleData vehicleData
     annotation (Placement(transformation(extent={{60,-10},{80,10}})));
   Modelica.Mechanics.Rotational.Components.Brake brake_1(final cgeo=2, final
       fn_max=vehicleData.tauBrakeFront/2)
@@ -31,22 +30,22 @@ model Brakes4wheels "Simple brake model 4 wheels"
         extent={{-10,10},{10,-10}},
         rotation=270,
         origin={60,40})));
-  EMo.Sensors.RotationalMultiSensor rotationalMultiSensor_1 annotation (
+  EMOTH.Sensors.RotationalMultiSensor rotationalMultiSensor_1 annotation (
       Placement(transformation(
         extent={{10,-10},{-10,10}},
         rotation=90,
         origin={-60,-70})));
-  EMo.Sensors.RotationalMultiSensor rotationalMultiSensor_2 annotation (
+  EMOTH.Sensors.RotationalMultiSensor rotationalMultiSensor_2 annotation (
       Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-60,70})));
-  EMo.Sensors.RotationalMultiSensor rotationalMultiSensor_3 annotation (
+  EMOTH.Sensors.RotationalMultiSensor rotationalMultiSensor_3 annotation (
       Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={60,-70})));
-  EMo.Sensors.RotationalMultiSensor rotationalMultiSensor_4 annotation (
+  EMOTH.Sensors.RotationalMultiSensor rotationalMultiSensor_4 annotation (
       Placement(transformation(
         extent={{10,-10},{-10,10}},
         rotation=270,

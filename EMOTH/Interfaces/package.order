@@ -7,4 +7,5 @@ ChassisBus
 DriveLineBus
 ElectricMotorBus
 RexBus
+DynamometerBus
 BaseElectricDevice

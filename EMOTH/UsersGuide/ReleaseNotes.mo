@@ -47,10 +47,15 @@ class ReleaseNotes "Release notes"
 <li>Chassis.Car2axle.RollingResistance individual for all 4 wheels</li>
 <li>DriveLines.Components.Differential using Modelica.Mechanics.Rotational.Components.IdealPlanetary</li>
 </ul>
+<h5>Version 1.9.0, 2021-07-11</h5>
+<ul>
+<li>Removed some unnecessary import statements (EMo)</li>
+<li>Started implementation of chassis dynamometer (under construction)</li>
+</ul>
 <h5>Planned:</h5>
 <ul>
+<li>Chassis dynamometer</li>
 <li>Voltage dependent drive torque limit</li>
-<li>A chassis dynamometer</li>
 </ul>
 </html>"));
 end ReleaseNotes;
