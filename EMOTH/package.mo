@@ -2,9 +2,10 @@ within ;
 package EMOTH "Electric Mobility OTH"
   extends Modelica.Icons.Package;
 
-  annotation (version="1.9.0", versionDate="2021-07-11",
-    uses(Modelica(version="4.0.0"), VehicleInterfaces(version="2.0.0"),
-      ModelicaServices(version="4.0.0")),
+  annotation (version="1.9.1", versionDate="2021-07-11",
+    uses(Modelica(version="4.0.0"),
+      ModelicaServices(version="4.0.0"),
+      VehicleInterfaces(version="2.0.1")),
     preferredView="info", Documentation(info="<html>
 <p><img src=\"modelica://EMOTH/Resources/Images/OTH_EI.png\" align=\"middle\"></p>
 <p>

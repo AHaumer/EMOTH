@@ -52,6 +52,11 @@ class ReleaseNotes "Release notes"
 <li>Removed some unnecessary import statements (EMo)</li>
 <li>Started implementation of chassis dynamometer (under construction)</li>
 </ul>
+<h5>Version 1.9.1, 2024-04-19</h5>
+<ul>
+<li>Upgraded to VehicleInterfaces 2.0.1</li>
+<li>Changed assert to terminate when SoC of battery leaves allowed region</li>
+</ul>
 <h5>Planned:</h5>
 <ul>
 <li>Chassis dynamometer</li>

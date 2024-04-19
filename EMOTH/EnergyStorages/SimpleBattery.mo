@@ -70,9 +70,15 @@ public
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-30,50})));
+  Modelica.Blocks.Logical.TerminateSimulation terminateSimulation1(condition=
+        SoC > 1.001, terminationText="Battery overcharged!")
+    annotation (Placement(transformation(extent={{20,-20},{100,-12}})));
+  Modelica.Blocks.Logical.TerminateSimulation terminateSimulation2(condition=
+        SoC < batteryData.SoCmin, terminationText="Battery exhausted!")
+    annotation (Placement(transformation(extent={{20,-40},{100,-32}})));
 equation
-  assert(SoC<=1.001, "Battery overloaded!");
-  assert(SoC>=batteryData.SoCmin, "Battery exhausted!");
+//assert(SoC<=1.001, "Battery overcharged!");
+//assert(SoC>=batteryData.SoCmin, "Battery exhausted!");
   connect(controlBus.batteryBus, batteryBus) annotation (Line(
       points={{-100,-60},{-100,-60},{-100,0}},
       color={255,204,51},
